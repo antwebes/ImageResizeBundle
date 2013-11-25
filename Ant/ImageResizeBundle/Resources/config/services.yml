@@ -1,0 +1,17 @@
+parameters:
+    ant.image_resizer.resizer.class: Ant\ImageResizeBundle\Image\Resizer
+    ant.image_resizer.image_loader.class: Ant\ImageResizeBundle\Image\ImageLoader\ImageFileLoader
+    ant.image_resizaer.resize_proccessor.proportional_resize_proccessor.class: Ant\ImageResizeBundle\Image\ResizeProccessor\ProportionaResizeProccessor
+    imagine.gd.class: Imagine\Gd\Imagine
+
+services:
+    ant.image_resizer.resizer:
+        class: %ant.image_resizer.resizer.class%
+        arguments: [@ant.image_resizer.image_loader, {proportional: @ant.image_resizaer.resize_proccessor.proportional_resize_proccessor}]
+    ant.image_resizer.image_loader:
+        class: %ant.image_resizer.image_loader.class%
+        arguments: [@imagine.gd]
+    ant.image_resizaer.resize_proccessor.proportional_resize_proccessor:
+        class : %ant.image_resizaer.resize_proccessor.proportional_resize_proccessor.class%
+    imagine.gd:
+        class: %imagine.gd.class%
