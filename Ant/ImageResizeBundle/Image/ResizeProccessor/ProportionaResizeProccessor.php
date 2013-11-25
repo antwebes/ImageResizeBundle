@@ -12,7 +12,7 @@ class ProportionaResizeProccessor implements ResizeProccessorInterface
         $box = $image->getSize();
         list($width, $height) = $this->scaleImage($box->getWidth(), $box->getHeight(), $width, $height);
 
-        $image->thumbnail(new Box($width, $height));
+        return $image->thumbnail(new Box($width, $height));
     }
 
     protected function scaleImage($width, $height, $maximumWidth, $maximumHeight)

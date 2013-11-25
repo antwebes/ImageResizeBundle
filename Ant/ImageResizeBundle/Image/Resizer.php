@@ -15,8 +15,6 @@ class Resizer
     public function resize($path, $with, $height, $method)
     {
         $image = $this->imageLoader->load($path);
-        $this->resizeProccessors[$method]->resize($image, $with, $height);
-
-        return $image;
+        return $this->resizeProccessors[$method]->resize($image, $with, $height);
     }
 }
