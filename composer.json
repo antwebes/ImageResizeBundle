@@ -23,6 +23,6 @@
     },
     "minimum-stability": "dev",
     "autoload": {
-        "psr-0": { "Ant\\ImageResizeBundle": "Ant/ImageResizeBundle" }
+        "psr-0": { "Ant\\ImageResizeBundle": "" }
     }
 }
