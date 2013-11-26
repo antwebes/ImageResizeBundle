@@ -1,17 +1,20 @@
 parameters:
-    ant.image_resizer.resizer.class: Ant\ImageResizeBundle\Image\Resizer
-    ant.image_resizer.image_loader.class: Ant\ImageResizeBundle\Image\ImageLoader\ImageFileLoader
-    ant.image_resizer.resize_proccessor.proportional_resize_proccessor.class: Ant\ImageResizeBundle\Image\ResizeProccessor\ProportionaResizeProccessor
-    imagine.gd.class: Imagine\Gd\Imagine
+    image_resizer.resizer.class: Ant\ImageResizeBundle\Image\Resizer
+    image_resizer.image_loader.gaufrette.class: Ant\ImageResizeBundle\Image\ImageLoader\ImageGaufretteLoader
+    image_resizer.image_loader.file.class: Ant\ImageResizeBundle\Image\ImageLoader\ImageGaufretteFile
+    image_resizer.resize_proccessor.proportional_resize_proccessor.class: Ant\ImageResizeBundle\Image\ResizeProccessor\ProportionaResizeProccessor
 
 services:
-    ant.image_resizer.resizer:
-        class: %ant.image_resizer.resizer.class%
-        arguments: [@ant.image_resizer.image_loader, {proportional: @ant.image_resizer.resize_proccessor.proportional_resize_proccessor}]
-    ant.image_resizer.image_loader:
-        class: %ant.image_resizer.image_loader.class%
-        arguments: [@imagine.gd]
-    ant.image_resizer.resize_proccessor.proportional_resize_proccessor:
-        class : %ant.image_resizer.resize_proccessor.proportional_resize_proccessor.class%
-    imagine.gd:
-        class: %imagine.gd.class%
+    image_resizer.resizer:
+        class: %image_resizer.resizer.class%
+        arguments: [image_resizer.image_loader.type, {proportional: @image_resizer.resize_proccessor.proportional_resize_proccessor}]
+    image_resizer.image_loader.gaufrette:
+        class: %image_resizer.image_loader.gaufrette.class%
+        arguments: [@image_resizer.imagine, image_resizer.image_loader.gaufrette_filesystem]
+    image_resizer.image_loader.file:
+        class: %image_resizer.image_loader.file.class%
+        arguments: [@image_resizer.imagine]
+    image_resizer.resize_proccessor.proportional_resize_proccessor:
+        class : %image_resizer.resize_proccessor.proportional_resize_proccessor.class%
+    image_resizer.imagine:
+        class: %image.image_resizer.class%

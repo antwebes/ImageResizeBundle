@@ -18,7 +18,26 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('image_resizer');
+        $treeBuilder->root('image_resize')
+                ->isRequired()
+                ->children()
+                    ->arrayNode('image_loader')
+                        ->children()
+                            ->scalarNode('imagine_class')->defaultValue('Imagine\Gd\Imagine')->end()
+                            ->scalarNode('type')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                                ->validate()
+                                    ->ifNotInArray(array('file', 'gaufrette'))
+                                        ->thenInvalid('Invalid type: %s')
+                                    ->end()
+                            ->end()
+                            ->scalarNode('gaufrette_filesystem')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+            ;
 
         return $treeBuilder;
     }
