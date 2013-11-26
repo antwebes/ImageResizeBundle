@@ -1,0 +1,28 @@
+{
+    "name": "antwebes/image-resize-bundle",
+    "type": "symfony-bundle",
+    "description": "Image resize bundle for symfony2",
+    "keywords": ["image", "resize"],
+    "homepage": "https://github.com/antwebes/ImageResizeBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jdeveloper",
+            "homepage": "https://github.com/antwebes"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "imagine/imagine": "0.6.*@dev"
+    },
+    "require-dev": {
+        "knplabs/knp-gaufrette-bundle": "0.2.*@dev"
+    },
+    "suggest": {
+      "knplabs/knp-gaufrette-bundle": "If you want the gaufrette loader"  
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": { "Ant\\ImageResizeBundle": "Ant/ImageResizeBundle" }
+    }
+}
